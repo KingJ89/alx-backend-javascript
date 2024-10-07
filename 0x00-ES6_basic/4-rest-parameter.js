@@ -1,5 +1,5 @@
-export default function concatArrays(array1, array2, string) {
-  const concatenated = [...array1, ...array2, ...string];
-  return concatenated;
+export default function returnHowManyArguments(...args) {
+  const numArguments = args.length;
+  return numArguments;
 }
 
