@@ -1,46 +1,38 @@
-import Currency from './Currency';
-
 export default class Pricing {
   constructor(amount, currency) {
-    this.amount = amount;
+    this.amount = amount; // Use setters to validate on instantiation
     this.currency = currency;
   }
 
-  // Getter for amount
   get amount() {
     return this._amount;
   }
 
-  // Setter for amount with validation
-  set amount(newAmount) {
-    if (typeof newAmount !== 'number') {
+  set amount(value) {
+    if (typeof value !== 'number') {
       throw new TypeError('Amount must be a number');
     }
-    this._amount = newAmount;
+    this._amount = value;
   }
 
-  // Getter for currency
   get currency() {
     return this._currency;
   }
 
-  // Setter for currency with validation
-  set currency(newCurrency) {
-    if (!(newCurrency instanceof Currency)) {
-      throw new TypeError('Currency must be an instance of Currency');
+  set currency(value) {
+    if (typeof value !== 'object' || typeof value.displayFullCurrency !== 'function') {
+      throw new TypeError('Currency must be an object with a displayFullCurrency method');
     }
-    this._currency = newCurrency;
+    this._currency = value;
   }
 
-  // Method to display the full price with currency
   displayFullPrice() {
     return `${this.amount} ${this.currency.displayFullCurrency()}`;
   }
 
-  // Static method to convert price
   static convertPrice(amount, conversionRate) {
     if (typeof amount !== 'number' || typeof conversionRate !== 'number') {
-      throw new TypeError('Amount and conversion rate must be numbers');
+      throw new TypeError('Both amount and conversion rate must be numbers');
     }
     return amount * conversionRate;
   }
