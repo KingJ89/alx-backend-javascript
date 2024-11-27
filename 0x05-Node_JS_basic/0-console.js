@@ -1,10 +1,9 @@
 /**
- * Logs a message to the console.
- * @param {string} message - The message to be displayed.
+ * Prints a message to the standard output.
+ * @param {string} message - The message to be printed.
  */
-function displayMessage(message) {
-  console.log(message);
+function displayMessage(message)
+{
+	console.log(message);
 }
-
 module.exports = displayMessage;
-
